@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  root 'cars#index'
+  get 'cars(.:format)' => 'cars#index', as: 'cars'
+  get 'cars/:id/edit' => 'cars#edit', as: 'edit_car'
+  get 'cars/:id' => "cars#show"
+  patch 'cars/:id' => 'cars#update', as: 'car'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

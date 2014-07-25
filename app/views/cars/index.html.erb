@@ -1,0 +1,20 @@
+<h1>Cars</h1>
+<table class='table'>
+  <th>Make</th>
+  <th>Model</th>
+  <th>Year</th>
+  <th>Price</th>
+  <% @cars.each do |car| %>
+  <tr>
+    <td><%= car.make %></td>
+    <td><%= car.model %></td>
+    <td><%= car.year %></td>
+    <td><%= car.price %></td>
+   </tr>
+<% end %>
+</table>
+</br>
+</br>
+<%# (1) needs to be coded %>
+<%= link_to 'Edit', edit_car_path(1) %>
+
