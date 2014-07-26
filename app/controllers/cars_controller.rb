@@ -6,6 +6,20 @@ class CarsController < ApplicationController
     @cars = Car.all
   end
 
+  def new
+    @car = Car.new
+  end
+
+  def create
+    @car = Car.new(car_params)
+    creation_message ="#{@car.year} #{@car.make} #{@car.model} created"
+
+    if @car.save
+    redirect_to cars_path, notice: creation_message
+    end
+  end
+
+
   def edit
   end
 
@@ -23,6 +37,12 @@ class CarsController < ApplicationController
       end
     end
   end
+
+  # strong params allows white listing
+  def car_params
+    params.require(:car).permit(:make, :model, :year, :price)
+  end
+
 
   private
   def set_car

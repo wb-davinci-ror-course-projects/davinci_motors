@@ -3,8 +3,9 @@ class Cars < ActiveRecord::Migration
     create_table :cars do |t|
       t.string :make
       t.string :model
-      t.string :year
-      t.string :price
+      t.integer :year
+      t.decimal :price, precision: 8, scale: 2
+      # 8 digits long 6 numbers plus two decimals
 
       t.timestamps
 
