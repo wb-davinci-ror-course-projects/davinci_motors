@@ -1,3 +1,4 @@
+# documentation
 class Cars < ActiveRecord::Migration
   def change
     create_table :cars do |t|

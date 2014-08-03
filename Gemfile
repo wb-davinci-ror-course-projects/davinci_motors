@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'guard-rubocop'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use sqlite3 as the database for Active Record
@@ -35,6 +35,7 @@ group :test, :darwin, :development do
 end
 group :test do
   gem 'capybara'
+  gem 'shoulda-matchers', require: false
 end
 
 # Use ActiveModel has_secure_password
