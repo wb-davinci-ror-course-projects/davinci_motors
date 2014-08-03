@@ -12,10 +12,10 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    # creation_message ="#{@car.year} #{@car.make} #{@car.model} created"
+    creation_message ="#{@car.year} #{@car.make} #{@car.model} created"
     respond_to do |format|
       if @car.save
-        format.html { redirect_to @car, notice: 'Car was successfully created.' }
+        format.html { redirect_to @car, notice: creation_message }
         format.json { render action: 'show', status: :created, location: @car }
       else
         format.html { render action: 'new' }
