@@ -4,7 +4,6 @@ feature 'Creating Cars' do
   scenario 'can create a car' do
     create_car('Ford', 'Mustang', 1967, 2_300)
     create_car('Dodge', 'Ram', 2013, 23_000)
-
   end
 end
 
