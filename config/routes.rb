@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
 
   root 'cars#index'
+
+  get 'login' => 'sessions#login'    # if different than get 'login':   , as: 'something else'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
   resources :cars
+
+  resources :users, only: [:new, :create],
+            path_names: { new: 'signup' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

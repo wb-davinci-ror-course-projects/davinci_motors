@@ -1,4 +1,3 @@
-# A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
 notification :gntp
@@ -6,6 +5,10 @@ notification :gntp
 guard :bundler do
   watch('Gemfile')
 end
+# guard :rubocop do
+#   watch(%r{.+\.rb$})
+#   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
+# end
 
 # Note: The cmd option is now required due to the increasing number of ways
 #       rspec may be run, below are examples of the most common uses.
@@ -19,7 +22,6 @@ guard :rspec, cmd: 'bundle exec rspec', all_on_start: true, all_after_pass: true
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
-
   # Rails example
   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
   watch(%r{^app/(.*)(\.erb|\.haml|\.slim)$})          { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
@@ -28,7 +30,6 @@ guard :rspec, cmd: 'bundle exec rspec', all_on_start: true, all_after_pass: true
   watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
   watch('spec/rails_helper.rb')                       { "spec" }
-
   # Capybara features specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml|slim)$})     { |m| "spec/features/#{m[1]}_spec.rb" }
 
@@ -37,8 +38,3 @@ guard :rspec, cmd: 'bundle exec rspec', all_on_start: true, all_after_pass: true
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
 end
 
-
-guard :rubocop do
-  watch(%r{.+\.rb$})
-  watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
-end

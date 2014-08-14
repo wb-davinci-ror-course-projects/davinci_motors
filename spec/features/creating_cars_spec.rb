@@ -2,20 +2,25 @@ require 'rails_helper'
 
 feature 'Creating Cars' do
   scenario 'can create a car' do
-    create_car('Ford', 'Mustang', 1967, 2_300)
-    create_car('Dodge', 'Ram', 2013, 23_000)
+    car_1 = FactoryGirl.create(:car)
+    create_car_test(car_1)
+    car_2 = FactoryGirl.create(:car)
+    create_car_test(car_2)
+    # create_car('Ford', 'Mustang', 1967, 2_300)
+    # create_car('Dodge', 'Ram', 2013, 23_000)
   end
 end
 
 feature 'Viewing Car' do
   scenario 'can view a car' do
-    Car.create(make: 'Nissan', model: 'Xtera', year: 2010, price: 12_000)
+    # Car.create(make: 'Nissan', model: 'Xtera', year: 2010, price: 12_000)
+  car = FactoryGirl.create(:car)
     visit 'cars'
 
-    expect(page).to have_content('Nissan')
-    expect(page).to have_content('Xtera')
-    expect(page).to have_content(2010)
-    expect(page).to have_content(12_000)
+    expect(page).to have_content(car.make)
+    expect(page).to have_content(car.model)
+    expect(page).to have_content(car.year)
+    expect(page).to have_content(car.price)
   end
 end
 
@@ -40,21 +45,21 @@ feature 'Editing Cars' do
   end
 end
 
-def create_car(make, model, year, price)
+def create_car_test(car)
   visit '/'
 
   click_link 'New Car'
 
-  fill_in 'Make', with: make
-  fill_in 'Model', with: model
-  fill_in 'Year', with: year
-  fill_in 'Price', with: price
+  fill_in 'Make', with: car.make
+  fill_in 'Model', with: car.model
+  fill_in 'Year', with: car.year
+  fill_in 'Price', with: car.price
 
   click_button 'Create Car'
 
-  expect(page).to have_content("#{year} #{make} #{model} created")
-  expect(page).to have_content(make)
-  expect(page).to have_content(model)
-  expect(page).to have_content(year)
-  expect(page).to have_content(price)
+  expect(page).to have_content("#{car.year} #{car.make} #{car.model} created")
+  expect(page).to have_content(car.make)
+  expect(page).to have_content(car.model)
+  expect(page).to have_content(car.year)
+  expect(page).to have_content(car.price)
 end

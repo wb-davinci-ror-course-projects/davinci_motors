@@ -4,6 +4,9 @@ gem 'rspec-rails'
 gem 'guard-bundler'
 gem 'guard-rspec'
 gem 'factory_girl_rails'
+gem 'faker'
+gem 'byebug'
+gem 'launchy'
 group :test, :darwin, :development do
   gem 'ruby_gntp'
 end
@@ -15,6 +18,7 @@ end
 gem 'guard-rubocop'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
+gem 'bcrypt'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
