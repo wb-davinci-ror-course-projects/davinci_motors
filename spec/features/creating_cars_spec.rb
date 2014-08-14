@@ -2,19 +2,20 @@ require 'rails_helper'
 
 feature 'Creating Cars' do
   scenario 'can create a car' do
+
     car_1 = FactoryGirl.create(:car)
     create_car_test(car_1)
+
     car_2 = FactoryGirl.create(:car)
     create_car_test(car_2)
-    # create_car('Ford', 'Mustang', 1967, 2_300)
-    # create_car('Dodge', 'Ram', 2013, 23_000)
   end
 end
 
 feature 'Viewing Car' do
   scenario 'can view a car' do
-    # Car.create(make: 'Nissan', model: 'Xtera', year: 2010, price: 12_000)
+
   car = FactoryGirl.create(:car)
+
     visit 'cars'
 
     expect(page).to have_content(car.make)
@@ -26,8 +27,11 @@ end
 
 feature 'Editing Cars' do
   scenario 'can edit a car' do
+
     Car.create(id: 51, make: 'Nissan', model: 'Xtera', year: 2010, price: 12_000)
+
     visit '/cars/51'
+
     click_link 'Edit'
 
     fill_in 'Make', with: 'Subaru'
